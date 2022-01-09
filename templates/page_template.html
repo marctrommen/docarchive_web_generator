@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>{TITLE}</title>
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,400i,500,500i,700,7001,900,900i">
+	<link rel="stylesheet" href="css/page.css">
+	<link rel="stylesheet" href="css/{PAGESTYLE}">
+</head>
+<body>
+	<!-- Navigation -->
+	<nav>
+		<a class="col1 nav-button" href="index.html" target="_self"/>Start</a>
+		<a class="col2 nav-button" href="all_years.html" target="_self"/>Jahre</a>
+		<a class="col3 nav-button" href="all_keywords.html" target="_self"/>Stichworte</a>
+	</nav>
+	
+	<!-- Header -->
+	<header>
+		<div class="title">&gt;&gt;{TITLE}&lt;&lt;</div>
+	</header>
+	
+	<!-- Content -->
+	<main>{CONTENT}</main>
+	
+	<!-- Footer -->	
+	<footer>
+		<p>{CURRENT_YEAR} | zuletzt generiert: <time 
+				datetime="{WEB_PAGE_GENERATED}">{WEB_PAGE_GENERATED_HUMAN_READABLE}</time></p>
+	</footer>
+
+</body>
+</html>
