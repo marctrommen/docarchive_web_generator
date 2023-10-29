@@ -53,7 +53,12 @@ def __init():
 def __load_config():
 	sys.stderr.write("__load_config()\n")
 	
-	with open("config.json", "r") as f:
+	configPath = os.path.realpath(__file__)
+	configPath = os.path.dirname(configPath)
+	configPath = os.path.normpath(configPath)
+	configPath = os.path.join(configPath, "config.json")
+
+	with open(configPath, "r") as f:
 		DATA["CONFIG"] = json.load(f)
 		if not DATA["CONFIG"]:
 			raise RuntimeError("configuration should not be empty!")
@@ -399,11 +404,21 @@ if __name__ == '__main__':
 	sys.stderr.write("main() start\n")
 
 	__init()
-	__fill_data()
-	__build_web_page()
 	
-	sys.stderr.write("main() done ")
-	sys.stderr.write(DATA["CONFIG"]["WEB_PAGE_GENERATED"])
-	sys.stderr.write("\n")
+	# check for semaphore
+	semaphore = os.path.join(DATA["CONFIG"]["DOCUMENT_ARCHIVE_BASE_DIR"], "semaphore")
+	if os.path.exists(semaphore):
 	
+		__fill_data()
+		__build_web_page()
+	
+		sys.stderr.write(DATA["CONFIG"]["WEB_PAGE_GENERATED"])
+	
+		# delete semaphore
+		os.remove(semaphore)
+	else:
+		sys.stderr.write("nothing to do\n")
+
+	sys.stderr.write("main() done\n")
+
 	exit(0)
