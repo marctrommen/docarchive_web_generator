@@ -52,7 +52,6 @@ def __init():
 # load configuration from file
 def __load_config():
 	sys.stderr.write("__load_config()\n")
-	
 	configPath = os.path.realpath(__file__)
 	configPath = os.path.dirname(configPath)
 	configPath = os.path.normpath(configPath)
@@ -244,10 +243,10 @@ def __create_symlink_for_index_page():
 	destination_file = year_index_list[0]
 
 	link_name = os.path.join(DATA["CONFIG"]["BUILD_TARGET_DIR"], "index.html")
-	
+
 	os.symlink(destination_file, link_name)
-	
-	
+
+
 # -----------------------------------------------------------------------------
 def __create_all_years_page(year_list):
 	sys.stderr.write("__create_all_years_page()\n")

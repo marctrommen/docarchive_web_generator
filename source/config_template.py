@@ -51,11 +51,12 @@ config = {}
 # all PDF document files and their assotiated JSON files are located.
 # The JSON files hold the meta data of all these documents and need to be read
 # recursively!
-config["DOCUMENT_ARCHIVE_BASE_DIR"] = ""
+config["DOCUMENT_ARCHIVE_BASE_DIR"] = "/home/marco/scratch/docarchive"
 
 
 aPath = os.path.realpath(__file__)
 aPath = os.path.dirname(aPath)
+configPath = os.path.normpath(aPath)
 aPath = os.path.join(aPath, "..")
 aPath = os.path.normpath(aPath)
 config["PROJECT_ROOT_DIR"] = aPath
@@ -64,7 +65,9 @@ config["STATIC_CONTENT_DIR"] = os.path.join( config["PROJECT_ROOT_DIR"], "static
 config["TEMPLATES_DIR"] = os.path.join( config["PROJECT_ROOT_DIR"], "templates" )
 
 if __name__ == '__main__':
-	with open('config.json', 'w') as f:
+	configPath = aPath = os.path.join(configPath, 'config.json')
+	
+	with open(configPath, 'w') as f:
 		json.dump(config, f)
 	
 	print("configuration file was written successfully!")
